@@ -1,90 +1,97 @@
 # 🎬 Movie Recommendation System
 
-A **Machine Learning-based Movie Recommendation System** built using Python and Streamlit.  
-This project recommends movies based on similarity of content using Natural Language Processing and cosine similarity.
+A **Movie Recommendation Web App** built with Python and Streamlit. The app recommends similar movies using a precomputed cosine similarity matrix and TMDB metadata.
 
 ## 📌 Project Overview
 
-This project suggests movies to users based on a selected movie.  
-It uses a content-based filtering approach where movies are recommended based on similarity of features like:
+This project lets users select a movie title and receive 5 similar movie recommendations.
 
-- Genres
-- Keywords
-- Cast
-- Crew
-- Overview
+The recommendation logic is based on:
+
+- Content similarity between movies
+- Precomputed feature vectors from TMDB metadata
+- Cosine similarity of movie embeddings
 
 ---
 
 ## 🧠 How It Works
 
-1. Data preprocessing is done on TMDB dataset  
-2. Important features are combined into a single "tags" column  
-3. Text vectorization is applied using **CountVectorizer**  
-4. Cosine similarity is calculated between movies  
-5. Top similar movies are recommended
+1. Load movie metadata from `movie_dict.pkl`
+2. Load precomputed similarity scores from `similarity.pkl`
+3. Display a Streamlit select box with movie titles
+4. When the user clicks `Recommend`, find the top 5 closest movies
+5. Fetch movie posters from TMDB API and show them with titles
 
 ---
 
-## 📂 Dataset Used
+## 📂 Included Files
 
-- TMDB 5000 Movies Dataset  
-- TMDB 5000 Credits Dataset  
+- `app.py` - Streamlit app entrypoint
+- `movie_dict.pkl` - Serialized movie metadata dictionary
+- `similarity.pkl` - Precomputed cosine similarity matrix
+- `movies.pkl` - Optional movie DataFrame pickle
+- `tmdb_5000_movies.csv` - TMDB movie metadata source
+- `tmdb_5000_credits.csv` - TMDB credits metadata source
+- `.streamlit/` - Streamlit configuration folder
+- `requirements.txt` - Python dependencies
+- `MRS.ipynb` - exploratory notebook
 
 ---
 
 ## 🛠️ Technologies Used
 
-- Python 🐍  
-- Pandas  
-- NumPy  
-- Scikit-learn  
-- Streamlit  
-- Natural Language Processing (NLP)
+- Python 3
+- Streamlit
+- Pandas
+- NumPy
+- Scikit-learn
+- Requests
 
 ---
 
-## 📊 Features
+## 🚀 Run the App Locally
 
-- 🎯 Movie recommendation based on similarity  
-- 🔍 Search any movie  
-- 🎥 Get top recommended movies  
-- 🌙 Dark themed UI (Streamlit)  
-- ⚡ Fast and interactive web app  
+1. Create and activate your Python environment (example):
 
----
-
-## 🧪 Machine Learning Concept
-
-- Content-Based Filtering  
-- Cosine Similarity  
-- Text Vectorization (Bag of Words)
-
----
-
-## 📁 Project Structure
-Movie-Recommender-System/
-│
-├── app.py
-├── movie_dict.pkl
-├── movies.pkl
-├── similarity.pkl
-├── tmdb_5000_movies.csv
-├── tmdb_5000_credits.csv
-├── .streamlit/
-├── README.md
-
----
-
-## 🚀 How to Run This Project
-
-### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/Movie-Recommender-System.git
-## 👨‍💻 Author
+python -m venv venv
+source venv/Scripts/activate
+```
 
-- **Name:** Fozia  
-- **Field:** Data Science & Artificial Intelligence Enthusiast  
-- **Skills:** Python, Machine Learning, SQL, Power BI, Deep Learning  
-- **GitHub:** https://github.com/Fozia-tech  
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Start the Streamlit app:
+
+```bash
+streamlit run app.py
+```
+
+4. Open the app in your browser at the URL shown by Streamlit.
+
+---
+
+## ⚠️ Notes
+
+- The app uses a hardcoded TMDB API key in `app.py` for poster image retrieval.
+- If the poster fetch fails, the app may show broken images.
+- The recommendation depends on the precomputed `similarity.pkl` file.
+
+---
+
+## 💡 Usage
+
+- Select a movie from the dropdown
+- Click `Recommend`
+- View the recommended movie titles and posters across 5 columns
+
+---
+
+## 👩‍💻 Author
+
+- **Name:** Fozia
+- **GitHub:** https://github.com/Fozia-tech
 
